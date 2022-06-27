@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 from advertisements.views import AdvertisementViewSet
+from mailing.views import MailingTaskViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 
 router.register('advertisements', AdvertisementViewSet)
-
+router.register('mailings', MailingTaskViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),

@@ -26,6 +26,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Celery settings
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_TIMEZONE = "Europe/Moscow"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+# Email settings
+DEFAULT_FROM_EMAIL = 'default@example.com'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +51,7 @@ INSTALLED_APPS = [
     'django_filters',
 
     'advertisements',
+    'mailing',
 ]
 
 MIDDLEWARE = [
@@ -91,16 +102,16 @@ WSGI_APPLICATION = 'api_with_restrictions.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3'
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'netology_classified_ads',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3'
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'netology_classified_ads',
+    #     'HOST': '127.0.0.1',
+    #     'PORT': '5432',
+    # }
 }
 
 # Password validation
@@ -126,7 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 

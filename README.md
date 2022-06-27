@@ -96,3 +96,13 @@ manage.py migrate
 ```bash
 python manage.py runserver
 ```
+
+Для запуска celery необходимо предварительно запустить контейнер с redis:
+```bash
+docker-compose up -d
+```
+
+Celery запускается следующей командой:
+```bash
+celery -A api_with_restrictions worker -l INFO
+```
